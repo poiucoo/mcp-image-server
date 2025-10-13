@@ -3,9 +3,12 @@ import requests, base64
 
 app = FastAPI()
 
+@app.get("/")
+def root():
+    return {"status": "running"}
+
 @app.get("/fetch_image_base64")
 def fetch_image_base64(url: str):
-    """Fetch image from given URL and return as base64"""
     try:
         res = requests.get(url)
         res.raise_for_status()
